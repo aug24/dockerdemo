@@ -1,0 +1,47 @@
+Step 0 : FROM ubuntu:14.04
+ ---> 6d4946999d4f
+Step 1 : MAINTAINER wayne.clancy@bgch.co.uk
+ ---> Using cache
+ ---> 7f9c7d690336
+Step 2 : ENV DEBIAN_FRONTEND noninteractive
+ ---> Using cache
+ ---> dc687b76bb69
+Step 3 : ENV port 5000
+ ---> Using cache
+ ---> cd62ad570b4c
+Step 4 : RUN apt-get update
+ ---> Using cache
+ ---> b95a79e10537
+Step 5 : RUN sudo apt-get -y install python-setuptools python-dev build-essential  wget git
+ ---> Using cache
+ ---> fc0812dc28ce
+Step 6 : RUN /usr/bin/easy_install supervisor
+ ---> Using cache
+ ---> dee46d220860
+Step 7 : RUN /usr/bin/easy_install supervisor-stdout
+ ---> Using cache
+ ---> 7cd8ef4979a8
+Step 8 : ADD ./testapp-hello-world.conf /etc/supervisord.conf
+ ---> Using cache
+ ---> cea713109f5a
+Step 9 : RUN /usr/bin/easy_install bottle
+ ---> Using cache
+ ---> ffa6efccfad7
+Step 10 : RUN mkdir -p /opt/bgch-app
+ ---> Using cache
+ ---> f2d672dcf8b2
+Step 11 : ADD ./app-hello-world.py /opt/bgch-app/app-hello-world.py
+ ---> c98cfe173be5
+Removing intermediate container 65f961f3987b
+Step 12 : ADD ./start.sh /start.sh
+ ---> e66aecd9ca46
+Removing intermediate container 9027cd295d3c
+Step 13 : RUN chmod 700 /start.sh
+ ---> Running in 1ba0c2880f4e
+ ---> 790af8dba464
+Removing intermediate container 1ba0c2880f4e
+Step 14 : CMD /start.sh ${port}
+ ---> Running in 74f926183713
+ ---> 0bf79fb57f13
+Removing intermediate container 74f926183713
+Successfully built 0bf79fb57f13
