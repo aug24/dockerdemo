@@ -7,7 +7,7 @@ Trivial little docker project
 To start, install docker, check out this repo and issue the following command at the repo root:
 
 ```
-docker build . > build.log
+docker build . | tee build.log
 build_id=$(tail -1 build.log | awk '{print $NF}')
 docker run -d -p 127.0.0.1:5000:5000 $build_id
 ```
