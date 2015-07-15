@@ -20,6 +20,7 @@ RUN sudo apt-get -y install python-setuptools python-dev build-essential  wget g
 RUN /usr/bin/easy_install supervisor
 RUN /usr/bin/easy_install supervisor-stdout
 ADD ./testapp-hello-world.conf /etc/supervisord.conf
+ADD ./branch /etc/branch
 
 # Install bottle
 RUN /usr/bin/easy_install bottle
