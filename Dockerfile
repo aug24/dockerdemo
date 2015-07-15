@@ -1,6 +1,6 @@
 FROM ubuntu:14.04
 
-MAINTAINER wayne.clancy@bgch.co.uk 
+MAINTAINER wayne.clancy@bgch.co.uk
 
 # Let the conatiner know that there is no tty
 ENV DEBIAN_FRONTEND noninteractive
@@ -20,17 +20,15 @@ RUN sudo apt-get -y install python-setuptools python-dev build-essential  wget g
 RUN /usr/bin/easy_install supervisor
 RUN /usr/bin/easy_install supervisor-stdout
 ADD ./testapp-hello-world.conf /etc/supervisord.conf
-ADD ./branch /etc/branch
 
 # Install bottle
 RUN /usr/bin/easy_install bottle
 
 # Add Python App
-RUN mkdir -p /opt/bgch-app
-ADD ./app-hello-world.py /opt/bgch-app/app-hello-world.py
+RUN mkdir -p /usr/lib/dockerdemo/
+ADD . /usr/lib/dockerdemo/
 
-# Create start.sh in / 
-ADD ./start.sh /start.sh
-RUN chmod 700 /start.sh
+# make start.sh executable
+RUN chmod 700 /usr/lib/dockerdemo/start.sh
 
-CMD /start.sh ${port}
+CMD /usr/lib/dockerdemo/start.sh
