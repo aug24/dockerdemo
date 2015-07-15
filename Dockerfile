@@ -9,7 +9,8 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV port 5000
 
 # Update System
-RUN apt-get update
+RUN sudo apt-get clean all
+RUN sudo apt-get update
 #RUN apt-get -y upgrade
 
 # Basic Requirements
@@ -19,6 +20,7 @@ RUN sudo apt-get -y install python-setuptools python-dev build-essential  wget g
 RUN /usr/bin/easy_install supervisor
 RUN /usr/bin/easy_install supervisor-stdout
 ADD ./testapp-hello-world.conf /etc/supervisord.conf
+ADD ./branch /etc/branch
 
 # Install bottle
 RUN /usr/bin/easy_install bottle
