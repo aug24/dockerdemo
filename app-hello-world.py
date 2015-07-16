@@ -1,15 +1,27 @@
 import bottle
+import os
 port=5000
 
-f=file('/usr/lib/dockerdemo/branch', 'r')
-branch=f.read()
-f.close
+dirname, filename = os.path.split(os.path.abspath(__file__))
+print "running from", dirname
+print "file is", filename
+
+try:
+   f=file(dirname + '/branch', 'r')
+   branch=f.read()
+   f.close
+except IOError:
+   branch=''
+
 if branch=='':
    branch='local'
  
-f=file('/usr/lib/dockerdemo/' + branch, 'r')
-greeting=f.read()
-f.close
+try:
+   f=file(dirname + '/' + branch, 'r')
+   greeting=f.read()
+   f.close
+except IOError:
+   greeting='No greeting found'
  
 @bottle.route('/')
 def home_page():
