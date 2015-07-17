@@ -25,6 +25,6 @@ except IOError:
  
 @bottle.route('/')
 def home_page():
-    return "Hello World (branch " + branch + ") listening on port " + str(port) + ": " + greeting + "\n"
+    return "Hello Viewers (branch " + branch + ") listening on port " + str(port) + ": " + greeting + "\n"
  
 bottle.run(host='0.0.0.0',port=port)
